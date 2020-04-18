@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MainPageService } from './main-page.service';
+import { MainPageService } from '../../Services/main-page.service';
 
 describe('MainPageService', () => {
   let service: MainPageService;

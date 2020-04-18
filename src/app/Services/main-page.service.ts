@@ -1,8 +1,8 @@
-import {Injectable, OnInit} from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError, retry} from "rxjs/operators";
-import {PokemonModel} from "../../Models/Pokemon.model";
+import {PokemonModel} from "../Models/Pokemon.model";
 
 
 @Injectable({
@@ -13,7 +13,9 @@ export class MainPageService {
   randomIndex: Number = Math.round(Math.random() * 964); // 964 - number of all pokemon
   PokemonURL: String = `https://pokeapi.co/api/v2/pokemon/${this.randomIndex.toString()}/`;
 
-  private handleError(error: HttpErrorResponse) {
+  pokeImage = `https://pokeres.bastionbot.org/images/pokemon/${this.randomIndex}.png`
+
+  private static handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
@@ -33,9 +35,18 @@ export class MainPageService {
   }
 
   getRandomPokemon = ():Observable<PokemonModel> => {
-    return this.http.get<PokemonModel>(this.PokemonURL.toString()).pipe(
+    return this.http.get<PokemonModel>(this.PokemonURL.toString())
+      .pipe(
       retry(3),
-      catchError(err =>this.handleError(err))
+      catchError(err => MainPageService.handleError(err))
+    )
+  }
+
+  getRandomPokemonImage = (): Observable<any>=>{
+    return this.http.get(this.pokeImage.toString())
+      .pipe(
+      retry(3),
+      catchError(err => MainPageService.handleError(err))
     )
   }
 }
