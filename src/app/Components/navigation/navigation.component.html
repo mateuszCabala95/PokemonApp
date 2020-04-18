@@ -1,0 +1,29 @@
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <div class="container">
+  <div class="navbar-brand">
+    <a class="navbar-item" routerLink="">
+    P O K E M O N
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarMobileDevice" (click)="toggleMenu()">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarMobileDevice" class="navbar-menu" [class.is-active]="isOpenMobileMenu">
+    <div class="navbar-end">
+      <a class="navbar-item">
+<!--      TODO: Add routerLink-->
+        P O K E D E X
+      </a>
+
+      <a class="navbar-item">
+<!--    TODO: Add routerLink-->
+        T Y P Y
+      </a>
+      </div>
+    </div>
+  </div>
+</nav>
