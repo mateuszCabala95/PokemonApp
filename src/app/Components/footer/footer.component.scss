@@ -1,0 +1,12 @@
+.fix-to-bottom{
+  position: fixed;
+  bottom: 0;
+
+  display: block;
+  width: 100%;
+
+  p{
+    padding: 20px 0;
+    display: block;
+  }
+}
