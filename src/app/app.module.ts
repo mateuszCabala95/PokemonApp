@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from "@angular/common/http";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -7,6 +8,7 @@ import { NavigationComponent } from './Components/navigation/navigation.componen
 import { FooterComponent } from './Components/footer/footer.component';
 import { PokedexComponent } from './Pages/pokedex/pokedex.component';
 import { TypesComponent } from './Pages/types/types.component';
+import { MainPageComponent } from './Pages/main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import { TypesComponent } from './Pages/types/types.component';
     NavigationComponent,
     FooterComponent,
     PokedexComponent,
-    TypesComponent
+    TypesComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
