@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError, retry} from "rxjs/operators";
-import {AllPokemonsModel} from "../Models/AllPokemons.model";
+import {OnePokemonModel, OnePokemonModelAny} from "../../../Models/OnePokemon.model";
 
 
 @Injectable({
@@ -10,10 +10,8 @@ import {AllPokemonsModel} from "../Models/AllPokemons.model";
 })
 export class MainPageService {
 
-  randomIndex: Number = Math.round(Math.random() * 868); // 964 - number of all pokemon
-  PokemonURL: String = `https://pokeapi.co/api/v2/pokemon/${this.randomIndex.toString()}/`;
-
-  pokeImage = `https://pokeres.bastionbot.org/images/pokemon/${this.randomIndex}.png` //868 - number of image for pokemons
+  randomIndex: number = Math.round(Math.random() * 868); // 964 - number of all pokemon, in RandomPokemonImageService fetch images from another server and there is only 868 photo
+  PokemonURL: string = `https://pokeapi.co/api/v2/pokemon/${this.randomIndex.toString()}/`;
 
   private static handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -34,17 +32,10 @@ export class MainPageService {
   constructor(private http: HttpClient) {
   }
 
-  getRandomPokemon = ():Observable<AllPokemonsModel> => {
-    return this.http.get<AllPokemonsModel>(this.PokemonURL.toString())
-      .pipe(
-      catchError(err => MainPageService.handleError(err))
-    )
-  }
 
-  getRandomPokemonImage = ()=>{
-    return this.http.get(this.pokeImage.toString())
-      .pipe(
-      catchError(err => MainPageService.handleError(err))
+  getRandomPokemon = ():Observable<OnePokemonModel>=>{
+    return this.http.get<OnePokemonModel>(this.PokemonURL).pipe(
+      catchError(err=> MainPageService.handleError(err))
     )
   }
 }
