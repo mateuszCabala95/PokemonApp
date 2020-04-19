@@ -1,6 +1,6 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {MainPageService} from "../../Services/main-page.service";
-import {PokemonModel} from "../../Models/Pokemon.model";
+import {AllPokemonsModel} from "../../Models/AllPokemons.model";
 
 
 @Component({
@@ -10,7 +10,7 @@ import {PokemonModel} from "../../Models/Pokemon.model";
 })
 export class MainPageComponent implements OnInit, OnDestroy {
 
-  randomPokemon$: PokemonModel = {count:0, next:null, previous:null, results:[]};
+  randomPokemon$: AllPokemonsModel = {count:0, next:null, previous:null, results:[]};
   randomPokemonImage$:string;
   private randomPokemonObservable: any;
   // private randomPokemonImageObservable: any;
@@ -27,7 +27,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   getRandomPokemon = () => {
     this.mainPageService.getRandomPokemon()
       .subscribe(
-        (data: PokemonModel) => this.randomPokemon$ = {
+        (data: AllPokemonsModel) => this.randomPokemon$ = {
         count: data.count,
         next: data.next,
         previous: data.previous,

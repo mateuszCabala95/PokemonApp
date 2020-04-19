@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError, retry} from "rxjs/operators";
-import {PokemonModel} from "../Models/Pokemon.model";
+import {AllPokemonsModel} from "../Models/AllPokemons.model";
 
 
 @Injectable({
@@ -34,8 +34,8 @@ export class MainPageService {
   constructor(private http: HttpClient) {
   }
 
-  getRandomPokemon = ():Observable<PokemonModel> => {
-    return this.http.get<PokemonModel>(this.PokemonURL.toString())
+  getRandomPokemon = ():Observable<AllPokemonsModel> => {
+    return this.http.get<AllPokemonsModel>(this.PokemonURL.toString())
       .pipe(
       catchError(err => MainPageService.handleError(err))
     )

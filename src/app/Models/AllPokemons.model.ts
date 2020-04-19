@@ -1,4 +1,4 @@
-export interface PokemonModel {
+export interface AllPokemonsModel {
   count:number,
   next?:string,
   previous?:string,
