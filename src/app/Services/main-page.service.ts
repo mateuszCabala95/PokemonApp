@@ -10,10 +10,10 @@ import {PokemonModel} from "../Models/Pokemon.model";
 })
 export class MainPageService {
 
-  randomIndex: Number = Math.round(Math.random() * 964); // 964 - number of all pokemon
+  randomIndex: Number = Math.round(Math.random() * 868); // 964 - number of all pokemon
   PokemonURL: String = `https://pokeapi.co/api/v2/pokemon/${this.randomIndex.toString()}/`;
 
-  pokeImage = `https://pokeres.bastionbot.org/images/pokemon/${this.randomIndex}.png`
+  pokeImage = `https://pokeres.bastionbot.org/images/pokemon/${this.randomIndex}.png` //868 - number of image for pokemons
 
   private static handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -37,15 +37,13 @@ export class MainPageService {
   getRandomPokemon = ():Observable<PokemonModel> => {
     return this.http.get<PokemonModel>(this.PokemonURL.toString())
       .pipe(
-      retry(3),
       catchError(err => MainPageService.handleError(err))
     )
   }
 
-  getRandomPokemonImage = (): Observable<any>=>{
+  getRandomPokemonImage = ()=>{
     return this.http.get(this.pokeImage.toString())
       .pipe(
-      retry(3),
       catchError(err => MainPageService.handleError(err))
     )
   }

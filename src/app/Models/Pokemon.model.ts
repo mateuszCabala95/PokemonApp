@@ -6,6 +6,6 @@ export interface PokemonModel {
 }
 
 interface Result {
-  name:string,
-  url:string
+    name: string,
+    url: string
 }
