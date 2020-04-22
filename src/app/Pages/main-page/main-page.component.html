@@ -1,21 +1,20 @@
-<body class="container">
-<!--<ng-container *ngFor="let poke of randomPokemon$.results">-->
-<!--<div class="card is-fluid">-->
-<!--  <div class="card-header-title is-centered">-->
-<!--    {{poke.name}}-->
-<!--  </div>-->
-<!--  <a class="card-footer is-centered" [href]="poke.url">{{poke.name}} </a>-->
-<!--</div>-->
-<!--</ng-container>-->
+  <div class="card container">
 
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut est hic in nobis non provident! Adipisci assumenda autem corporis cupiditate, debitis ducimus eum libero, minus mollitia natus perferendis, porro quasi rem sed suscipit ullam voluptas voluptatibus! Eius eos itaque laborum odit quae sit voluptas! Accusantium atque consequatur libero necessitatibus nesciunt nobis. Commodi consequatur debitis ipsum itaque molestiae nulla odit reprehenderit? Laborum magnam nulla odit ratione. Aperiam commodi dolore, eum expedita neque nulla odit perferendis recusandae rem sapiente tempora veritatis vitae voluptas. Alias aliquid, autem beatae consequuntur iusto nihil ut voluptates? Ad aspernatur beatae blanditiis dolore earum expedita fugit incidunt minima molestiae nam natus nesciunt non, porro recusandae tenetur ullam voluptate? Adipisci aut dicta dolores earum eveniet impedit in perspiciatis repellendus sequi ut. Ab accusantium atque, fugit illum ullam vitae. Aliquam aliquid aperiam aspernatur assumenda at deleniti eveniet explicabo id mollitia, nihil sint ut veniam? At cum debitis dolor dolorem impedit inventore iure modi quisquam recusandae sequi? Aliquam, cumque delectus excepturi harum incidunt ipsa itaque iure obcaecati officiis omnis quam quis quisquam quos suscipit unde veritatis voluptatum. Amet cupiditate earum exercitationem iste iure molestiae, necessitatibus quibusdam veritatis voluptatum. Accusantium corporis dignissimos dolor hic labore minus modi pariatur repellat similique. A eum omnis quidem repudiandae vero, vitae voluptate. A culpa debitis iste officiis quis reiciendis rem totam ullam vitae! Blanditiis consequuntur error, ex expedita inventore ipsam nulla placeat quae sit voluptatibus? Accusantium alias asperiores consectetur consequuntur delectus exercitationem impedit nobis odio optio, possimus quis recusandae voluptatum. Ad alias architecto at aut consequatur culpa cum delectus, deserunt doloribus eveniet illo in ipsam itaque modi mollitia nemo nesciunt nisi nostrum omnis provident quasi repudiandae sed similique temporibus vitae? Deleniti eveniet ipsa labore necessitatibus non officiis soluta voluptatem? Accusantium aliquam aliquid amet architecto asperiores at atque deserunt distinctio dolor earum eos error excepturi harum in incidunt laboriosam modi molestiae molestias, nemo neque nobis optio pariatur quae qui quia quibusdam quo saepe sed similique sint soluta sunt suscipit totam velit, veniam, voluptates voluptatibus? Consectetur distinctio eveniet fuga illo impedit maiores maxime, officiis reprehenderit soluta. Commodi consectetur deleniti, deserunt ducimus enim eveniet ex expedita hic laudantium neque officiis quaerat sapiente vel! A aliquam assumenda consequuntur earum, exercitationem quia velit voluptas. Ad aspernatur deserunt dolorum eum facere ipsam ipsum libero maxime, minima neque nisi, non nostrum odio officia quaerat quo rerum, sapiente sit. Alias aliquid consequatur corporis cum doloribus eveniet ex illo incidunt iure labore laudantium, modi mollitia nemo nihil numquam officia officiis quasi qui quos repellat rerum sapiente vel veniam veritatis voluptatibus? Ab autem consequuntur corporis culpa dignissimos dolorem dolorum eligendi error eum expedita illum inventore ipsam, laudantium libero minima minus nam natus non numquam odit optio, pariatur perferendis placeat porro quidem quis repudiandae sapiente tempore unde voluptas! A accusantium amet beatae distinctio nesciunt, perferendis, quas quasi quibusdam quos sit velit voluptas, voluptatum. Ab ad cupiditate doloremque eaque id inventore, ipsa maxime molestias repellendus? Ab atque autem deleniti dolorem facilis fuga iusto obcaecati praesentium vero voluptatibus! Asperiores blanditiis corporis debitis explicabo impedit incidunt maiores molestias neque soluta!
+    <div class="card-header">
+      <p class="card-header-title is-centered">{{randomPokemon$.name}}</p>
+    </div>
 
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <img [src]="imageToShow" alt="">
+      </figure>
+    </div>
 
+    <div class="card-footer">
+      <div class="card-footer-item"># {{randomPokemon$.id}}</div>
 
+      <div class="card-footer-item" *ngFor="let poke of randomPokemon$.types">{{poke.type.name}}</div>
 
-</p>
+    </div>
 
-<p>{{randomPokemon$.name}}</p>
-<p *ngFor="let move of randomPokemon$.moves">{{move.move.name}}</p>
-<img [src]="imageToShow" alt="">
-</body>
+  </div>
