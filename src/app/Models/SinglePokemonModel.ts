@@ -1,4 +1,4 @@
-export interface OnePokemonModel {
+export interface SinglePokemonModel {
   abilities:Array<Abilities>,
   base_experience:number,
   forms:Array<Forms>,
@@ -10,7 +10,7 @@ export interface OnePokemonModel {
   location_area_encounters:string,
   moves:Array<any>,
   name:string,
-  order:1,
+  order:number,
   species:{
     name:string,
     url:string,
@@ -20,7 +20,7 @@ export interface OnePokemonModel {
   weight:number,
 }
 
-interface Types {
+export interface Types {
   slot:number,
   type:{
     name:string,
@@ -28,7 +28,7 @@ interface Types {
   }
 }
 
-interface GameIndices{
+export interface GameIndices{
   game_index:number,
   version:{
     name:string,
@@ -36,12 +36,12 @@ interface GameIndices{
   }
 }
 
-interface Forms{
+export interface Forms{
   name:string,
   url:string,
 }
 
-interface Abilities {
+export interface Abilities {
   ability:{
     name:string,
     url:string,

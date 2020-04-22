@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {Observable, throwError} from "rxjs";
 import {catchError, retry} from "rxjs/operators";
-import {OnePokemonModel, OnePokemonModelAny} from "../../../Models/OnePokemon.model";
+import {SinglePokemonModel} from "../../../Models/SinglePokemonModel";
 
 
 @Injectable({
@@ -10,7 +10,9 @@ import {OnePokemonModel, OnePokemonModelAny} from "../../../Models/OnePokemon.mo
 })
 export class MainPageService {
 
-  randomIndex: number = Math.round(Math.random() * 868); // 964 - number of all pokemon, in RandomPokemonImageService fetch images from another server and there is only 868 photo
+
+// 964 - number of all pokemon, in RandomPokemonImageService fetch images from another server and there is only 868 photo
+  randomIndex: number = Math.round(Math.random() * 868);
   PokemonURL: string = `https://pokeapi.co/api/v2/pokemon/${this.randomIndex.toString()}/`;
 
   private static handleError(error: HttpErrorResponse) {
@@ -33,8 +35,8 @@ export class MainPageService {
   }
 
 
-  getRandomPokemon = ():Observable<OnePokemonModel>=>{
-    return this.http.get<OnePokemonModel>(this.PokemonURL).pipe(
+  getRandomPokemon = ():Observable<SinglePokemonModel>=>{
+    return this.http.get<SinglePokemonModel>(this.PokemonURL).pipe(
       catchError(err=> MainPageService.handleError(err))
     )
   }

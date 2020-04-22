@@ -1,6 +1,8 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {MainPageService} from "../../Services/main-page.service";
-import {AllPokemonsModel} from "../../Models/AllPokemons.model";
+import {MainPageService} from "../../Services/Pages/main-page/main-page.service";
+import {RandomPokemonImageService} from "../../Services/Pages/main-page/random-pokemon-image.service";
+import {SinglePokemonModel} from "../../Models/SinglePokemonModel";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -10,36 +12,96 @@ import {AllPokemonsModel} from "../../Models/AllPokemons.model";
 })
 export class MainPageComponent implements OnInit, OnDestroy {
 
-  randomPokemon$: AllPokemonsModel = {count:0, next:null, previous:null, results:[]};
-  randomPokemonImage$:string;
-  private randomPokemonObservable: any;
-  // private randomPokemonImageObservable: any;
+  randomPokemon$: SinglePokemonModel = {
+    abilities: undefined,
+    base_experience: 0,
+    forms: undefined,
+    game_indices: undefined,
+    height: 0,
+    held_items: undefined,
+    id: 0,
+    is_default: false,
+    location_area_encounters: "",
+    moves: undefined,
+    name: "",
+    order: 0,
+    species: {name: "", url: ""},
+    sprites: undefined,
+    types: undefined,
+    weight: 0
+  };
 
+  private randomPokemonObservable;
+  private isImageLoading: boolean;
+  private imageService: any;
+private getImage;
 
-  constructor(private mainPageService: MainPageService) {
+  constructor(private mainPageService: MainPageService, private randomImageService: RandomPokemonImageService) {
   }
+
+  randomPokemonImageURL = this.randomImageService.randomPokemonImageURL
 
   ngOnInit(): void {
-    const randomPokemonObservable = this.getRandomPokemon();
-    // const randomPokemonImageObservable = this.getRandomPokemonImage();
+    this.randomPokemonObservable = this.getRandomPokemon();
+      this.imageService = this.getImageFromService();
   }
 
-  getRandomPokemon = () => {
-    this.mainPageService.getRandomPokemon()
-      .subscribe(
-        (data: AllPokemonsModel) => this.randomPokemon$ = {
-        count: data.count,
-        next: data.next,
-        previous: data.previous,
-        results: [...data.results]
-      })
-  }
 
+  getRandomPokemon = (): any => {
+
+    this.mainPageService.getRandomPokemon().subscribe(
+      (data: SinglePokemonModel) =>
+        this.randomPokemon$ = {
+          abilities: [...data.abilities],
+          base_experience: data.base_experience,
+          forms: [...data.forms],
+          game_indices: [...data.game_indices],
+          height: data.height,
+          held_items: [...data.held_items],
+          id: data.id,
+          is_default: data.is_default,
+          location_area_encounters: data.location_area_encounters,
+          moves: [...data.moves],
+          name: data.name,
+          order: data.order,
+          species: {...data.species},
+          sprites: {...data.sprites},
+          types: [...data.types],
+          weight: data.weight,
+        }
+    )
+
+  }
 
 
   ngOnDestroy(): void {
     this.randomPokemonObservable.unsubscribe();
-    // this.randomPokemonImageObservable.unsubscribe()
   }
+
+  imageToShow: any;
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.imageToShow = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
+
+  getImageFromService() {
+    this.isImageLoading = true;
+    this.randomImageService.getImage(this.randomPokemonImageURL).subscribe(data => {
+      this.createImageFromBlob(data);
+      this.isImageLoading = false;
+    }, error => {
+      this.isImageLoading = false;
+      console.log(error);
+    });
+  }
+
+
 
 }
