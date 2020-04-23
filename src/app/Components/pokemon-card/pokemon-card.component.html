@@ -19,7 +19,8 @@
 
 
   <div class="panel">
-    <a class="panel-block" *ngFor="let poke of randomPokemonJSON.moves.slice(1,4)">{{poke.move.name}}</a>
+    <div class="panel-heading">Attacks</div>
+    <label class="panel-block" *ngFor="let poke of randomPokemonJSON.moves.slice(1,4); let i = index">{{i+1}}. {{poke.move.name}}</label>
   </div>
 
 </div>
