@@ -1,0 +1,25 @@
+<div class="card">
+
+  <div class="card-header">
+    <p class="card-header-title is-centered">{{randomPokemonJSON.name}}</p>
+  </div>
+
+  <div class="card-image">
+    <figure class="image">
+      <img [src]="randomPokemonImg" alt="" class="is-square">
+    </figure>
+  </div>
+
+  <div class="card-footer">
+    <div class="card-footer-item"># {{randomPokemonJSON.id}}</div>
+
+    <div class="card-footer-item" *ngFor="let poke of randomPokemonJSON.types">{{poke.type.name}}</div>
+
+  </div>
+
+
+  <div class="panel">
+    <a class="panel-block" *ngFor="let poke of randomPokemonJSON.moves.slice(1,4)">{{poke.move.name}}</a>
+  </div>
+
+</div>

@@ -1,20 +1,11 @@
-  <div class="card container">
+<div class="wrapper">
+  <app-navigation></app-navigation>
+</div>
 
-    <div class="card-header">
-      <p class="card-header-title is-centered">{{randomPokemon$.name}}</p>
-    </div>
+<div class="wrapper">
+  <app-pokemon-card [randomPokemonImg]="imageToShow" [randomPokemonJSON]="randomPokemon$" ></app-pokemon-card>
+</div>
 
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img [src]="imageToShow" alt="">
-      </figure>
-    </div>
-
-    <div class="card-footer">
-      <div class="card-footer-item"># {{randomPokemon$.id}}</div>
-
-      <div class="card-footer-item" *ngFor="let poke of randomPokemon$.types">{{poke.type.name}}</div>
-
-    </div>
-
-  </div>
+<div class="wrapper">
+  <app-footer></app-footer>
+</div>

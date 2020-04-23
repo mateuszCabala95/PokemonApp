@@ -9,6 +9,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { PokedexComponent } from './Pages/pokedex/pokedex.component';
 import { TypesComponent } from './Pages/types/types.component';
 import { MainPageComponent } from './Pages/main-page/main-page.component';
+import { PokemonCardComponent } from './Components/pokemon-card/pokemon-card.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MainPageComponent } from './Pages/main-page/main-page.component';
     FooterComponent,
     PokedexComponent,
     TypesComponent,
-    MainPageComponent
+    MainPageComponent,
+    PokemonCardComponent
   ],
   imports: [
     BrowserModule,
